@@ -8,6 +8,28 @@ import { useNavigate } from "react-router-dom";
 
 function Register(){
     const navigate = useNavigate();
+    const [name, setName] = React.useState("");
+    const [email, setEmail] = React.useState("");
+    const [password, setPasswprd] = React.useState("");
+    
+    const addUser = () => {fetch('http://localhost:3000/register', {
+        method: "POST",
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password
+        }),
+        headers: {
+            "Content-type": "application/json"
+        }
+    }).then((res) => {
+            res.json().then((data) => {
+                localStorage.setItem('token', data.token);
+                window.location = "/";
+            })
+        })
+    }
+
 
     return <>
     <div id='box-div'>
@@ -20,10 +42,10 @@ function Register(){
         <Typography variant="h6">
             Sign up and start learning
         </Typography><br/>
-        <TextField fullWidth={true} id="outlined-basic" label="Full name" variant="outlined" /><br/> <br/>
-        <TextField fullWidth={true} id="outlined-basic" label="Email" variant="outlined" /><br/> <br/>
-        <TextField fullWidth={true} id="outlined-basic" label="Password" variant="outlined" /> <br/> <br/>
-        <Button fullWidth={true} variant="outlined">Sign up</Button><br/><br/>
+        <TextField fullWidth={true} onChange={(e) => setName(e.target.value)} id="outlined-basic" label="Full name" variant="outlined" /><br/> <br/>
+        <TextField fullWidth={true} onChange={(e) => setEmail(e.target.value)} id="outlined-basic" label="Email" variant="outlined" /><br/> <br/>
+        <TextField fullWidth={true} onChange={(e) => setPasswprd(e.target.value)} id="outlined-basic" label="Password" variant="outlined" /> <br/> <br/>
+        <Button fullWidth={true} onClick={addUser} variant="outlined">Sign up</Button><br/><br/>
         <Typography>
         Already have an account? <Link href="" onClick={() => navigate('/login')}>Log in</Link>
         </Typography>

@@ -7,27 +7,35 @@ import Home from './ components/Home';
 import Courses from './ components/Courses';
 import Profile from './ components/Profile';
 import Dashboard from './ components/Dashboard';
+import AdminLogin from './ components/AdminLogin';
+import AdminPanel from './ components/AdminPanel';
+import Bottombar from './ components/Bottombar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 function App() {
 
   return (
-    <>
     <div>
-    <MyAppBar></MyAppBar>
+      <div>
+        <MyAppBar/>
+      </div>
+      <div id='pageContent'>
+      <Routes>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/courses" element={<Courses/>}/>
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/admin" element={<AdminLogin/>}/>
+        <Route path="/adminpanel" element={<AdminPanel/>}/>
+      </Routes>
+      </div>
+      <div>
+        <Bottombar/>
+      </div>
     </div>
-    <div id='pageContent'>
-    <Routes>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/register" element={<Register/>}/>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/courses" element={<Courses/>}/>
-      <Route path="Profile" element={<Profile/>}/>
-      <Route path="Dashboard" element={<Dashboard/>}/>
-    </Routes>
-    </div>
-    </>
   )
 }
 
