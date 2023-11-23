@@ -42,9 +42,9 @@ function Register(){
         <Typography variant="h6">
             Sign up and start learning
         </Typography><br/>
-        <TextField fullWidth={true} onChange={(e) => setName(e.target.value)} id="outlined-basic" label="Full name" variant="outlined" /><br/> <br/>
-        <TextField fullWidth={true} onChange={(e) => setEmail(e.target.value)} id="outlined-basic" label="Email" variant="outlined" /><br/> <br/>
-        <TextField fullWidth={true} onChange={(e) => setPasswprd(e.target.value)} id="outlined-basic" label="Password" variant="outlined" /> <br/> <br/>
+        <TextField fullWidth={true} onChange={(e) => setName(e.target.value)} id="name" label="Full name" variant="outlined" /><br/> <br/>
+        <TextField fullWidth={true} onChange={(e) => setEmail(e.target.value)} id="email" label="Email" variant="outlined" /><br/> <br/>
+        <TextField fullWidth={true} type='password' onChange={(e) => setPasswprd(e.target.value)} id="password" label="Password" variant="outlined" /> <br/> <br/>
         <Button fullWidth={true} onClick={addUser} variant="outlined">Sign up</Button><br/><br/>
         <Typography>
         Already have an account? <Link href="" onClick={() => navigate('/login')}>Log in</Link>
