@@ -14,10 +14,17 @@ body, html{
     box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
 }
 
-#coursesDiv, #homeDiv {
+#coursesDiv, #homeDiv{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+#adminDiv{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 155vh;
 }
 
 #coursesDiv div, #homeDiv div{
@@ -31,4 +38,22 @@ body, html{
     min-height: 8vh;
     margin-top: 15px;
     justify-content: baseline;
+}
+
+#courseButtons {
+    float:inline-end
+}
+
+#courseImgBtn {
+    display:grid;
+    float: right;
+    margin-right: 50px;
+    min-height: 200px;
+    text-align: center;
+}
+
+#container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f9f9f9;
 }

@@ -21,10 +21,10 @@ export default function Courses(){
     <div id="coursesDiv">
         {courses.map((course) => (
         <div>
-        <Card sx={{ minWidth: 275}}>
+        <Card sx={{ width: 275, height: 450}}>
         <CardContent>
             <CardContent>
-                <img style={{height: '20vw',width:'20vw', overflow: 'hidden'}} src='https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg'/>
+                <img style={{height: '15vw',width:'15vw', overflow: 'hidden'}} src={course.imageUrl}/>
             </CardContent>
             <Typography variant="h6">
             {course.title}

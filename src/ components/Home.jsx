@@ -26,21 +26,20 @@ export default function Home(){
     <div id="homeDiv">
         {courses.map((course) => (
         <div>
-        <Card sx={{ minWidth: 275}}>
+        <Card style={{ cursor: 'pointer' }} sx={{ width: 275, height: 450}} onClick={() => navigate('./course/'+course._id)}>
         <CardContent>
             <CardContent>
-                <img style={{height: '20vw',width:'20vw', overflow: 'hidden'}} src='https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg'/>
+                <img style={{height: '15vw',width:'15vw', overflow:'hidden'}} src={course.imageUrl}/>
             </CardContent>
             <Typography variant="h6">
             {course.title}
             </Typography>
-            <Typography variant="body1">
+            <Typography variant="body2">
                 {course.instructor}
             </Typography>
             <Typography variant="body1">
                 <CurrencyRupeeIcon sx={{ typography: 'body1' }}/>{course.price}
             </Typography><br/>
-            <Button fullWidth={true} size="small"><ShoppingCartIcon />Buy Course</Button><br/>
         </CardContent>
         </Card>
     </div>

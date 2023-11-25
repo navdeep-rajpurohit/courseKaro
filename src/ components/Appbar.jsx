@@ -49,6 +49,7 @@ function MyAppBar() {
       <AppBar position="static" color="">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
+          <img style={{height: "3vw", width: "3vw"}} src='https://www.svgrepo.com/show/515504/china-university-mooc.svg'/>
             <Typography
               variant="h6"
               noWrap
@@ -65,7 +66,7 @@ function MyAppBar() {
                 textDecoration: 'none',
               }}
             >
-            courseKaro
+              courseKaro
             </Typography>
             <Box sx={{ flexGrow: 0 }}>
             <Button 
@@ -90,6 +91,8 @@ function MyAppBar() {
           <AppBar position="static" color="">
             <Container maxWidth="xl">
               <Toolbar disableGutters>
+              <img style={{height: "3vw", width: "3vw"}} src='https://www.svgrepo.com/show/515504/china-university-mooc.svg'/>
+          
                 <Typography
                   variant="h6"
                   noWrap

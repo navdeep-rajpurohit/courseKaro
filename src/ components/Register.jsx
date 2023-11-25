@@ -24,8 +24,13 @@ function Register(){
         }
     }).then((res) => {
             res.json().then((data) => {
+                if(res.status == 201) {
                 localStorage.setItem('token', data.token);
                 window.location = "/";
+                }
+                else {
+                    alert(data.message);
+                }
             })
         })
     }
