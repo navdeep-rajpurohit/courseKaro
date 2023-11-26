@@ -9,7 +9,7 @@ import Profile from './ components/Profile';
 import Dashboard from './ components/Dashboard';
 import AdminLogin from './ components/AdminLogin';
 import Course from './ components/Course';
-import AdminPanel from './ components/AdminPanel';
+import AdminDashboard from './ components/AdminDashboard';
 import Bottombar from './ components/Bottombar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
@@ -39,7 +39,7 @@ function App() {
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/admin" element={<AdminLogin/>}/>
-          <Route path="/adminpanel" element={<AdminPanel/>}/>
+          <Route path="/adminDashboard" element={<AdminDashboard/>}/>
           <Route path="/course/:_id" element={<Course/>}/>
         </Routes>
         </div>

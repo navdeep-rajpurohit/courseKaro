@@ -22,7 +22,7 @@ export default function AdminLogin() {
         res.json().then((data) => {
             if(data.email){
                 localStorage.setItem('token', data.token);
-                navigate("/adminPanel");
+                navigate("/adminDashboard");
             }
             else {
                 alert(data.message);

@@ -27,8 +27,8 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
   }));
 
-export default function AdminPanel() {
-    const [courseTitle, setCourseTitle] = useRecoilState("");
+export default function AdminDashboard() {
+    const [courseTitle, setCourseTitle] = React.useState("");
     const [instructor, setInstructor] = React.useState("");
     const [description, setDescription] = React.useState("");
     const [imageUrl, setImageUrl] = React.useState("");
