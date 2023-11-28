@@ -52,7 +52,7 @@ function Register(){
         <TextField fullWidth={true} type='password' onChange={(e) => setPasswprd(e.target.value)} id="password" label="Password" variant="outlined" /> <br/> <br/>
         <Button fullWidth={true} onClick={addUser} variant="outlined">Sign up</Button><br/><br/>
         <Typography>
-        Already have an account? <Link href="" onClick={() => navigate('/login')}>Log in</Link>
+        Already have an account? <Link href="" onClick={() => navigate('/user/login')}>Log in</Link>
         </Typography>
         
     </Card>

@@ -47,11 +47,11 @@ function Login(){
                 <TextField fullWidth={true} type='password' id="password" label="Password" variant="outlined"  onChange={(e) => setPassword(e.target.value)} /> <br/> <br/>
                 <Button onClick={loginUser} fullWidth={true} variant="outlined">Log in</Button><br/><br/>
                 <Typography>
-                    or  <Link href="" onClick={() => navigate('/login')}>Forgot Password</Link>
+                    or  <Link href="" onClick={() => navigate('/user/forget-password')}>Forgot Password</Link>
                 </Typography>
                 <hr/>
                 <Typography>
-                    Don't have an account? <Link href="" onClick={() => navigate('/register')}>Sign up</Link>
+                    Don't have an account? <Link href="" onClick={() => navigate('/user/register')}>Sign up</Link>
                 </Typography>
                 
 

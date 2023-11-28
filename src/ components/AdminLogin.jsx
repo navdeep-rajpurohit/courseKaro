@@ -22,7 +22,8 @@ export default function AdminLogin() {
         res.json().then((data) => {
             if(data.email){
                 localStorage.setItem('token', data.token);
-                navigate("/adminDashboard");
+                setEmail(data.email);
+                navigate("/admin/dashboard");
             }
             else {
                 alert(data.message);
@@ -39,7 +40,7 @@ export default function AdminLogin() {
                 autoComplete="off"         
             >
                 <Typography variant="h6">
-                    Welcome to admin panel
+                    Welcome to instructor login
                 </Typography><br/>
                 <TextField fullWidth={true} id="email" label="Email" variant="outlined" onChange={(e) => setEmail(e.target.value)}/><br/> <br/>
                 <TextField fullWidth={true} type='password' id="password" label="Password" variant="outlined"  onChange={(e) => setPassword(e.target.value)} /> <br/> <br/>

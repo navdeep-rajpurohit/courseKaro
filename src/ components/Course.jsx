@@ -31,9 +31,6 @@ export default function Course() {
                 <Typography variant="subtitle2" display="block" gutterBottom>
                     {course.instructor}
                 </Typography>
-                <Typography variant="body1" display="block" gutterBottom>
-                    <CurrencyRupeeIcon />{course.price}
-                </Typography>
             </Box>         
             <Box id="courseImgBtn">
                     <Box
@@ -48,6 +45,9 @@ export default function Course() {
                         src={course.imageUrl}
                     />
                     <Box>
+                    <Typography variant="body1" display="block" gutterBottom>
+                        <CurrencyRupeeIcon />{course.price}
+                    </Typography>
                     <Button variant="contained">Buy this course</Button>
                     </Box>
                     

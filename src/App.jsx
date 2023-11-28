@@ -32,14 +32,14 @@ function App() {
         </div>
         <div id='pageContent'>
         <Routes>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/register" element={<Register/>}/>
+          <Route path="/user/login" element={<Login/>}/>
+          <Route path="/user/register" element={<Register/>}/>
           <Route path="/" element={<Home/>}/>
           <Route path="/courses" element={<Courses/>}/>
-          <Route path="/profile" element={<Profile/>}/>
-          <Route path="/dashboard" element={<Dashboard/>}/>
-          <Route path="/admin" element={<AdminLogin/>}/>
-          <Route path="/adminDashboard" element={<AdminDashboard/>}/>
+          <Route path="/user/profile" element={<Profile/>}/>
+          <Route path="/user/dashboard" element={<Dashboard/>}/>
+          <Route path="/admin/login" element={<AdminLogin/>}/>
+          <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
           <Route path="/course/:_id" element={<Course/>}/>
         </Routes>
         </div>

@@ -73,7 +73,7 @@ function MyAppBar() {
               variant="contained" 
               onClick={() => {
                 localStorage.setItem('token', null);
-                window.location = './';
+                setEmail(null);
               }}
             >
               Logout
@@ -87,12 +87,10 @@ function MyAppBar() {
   }
   else {
     return <>
-        <div id="appbar-div">
+        <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static" color="">
-            <Container maxWidth="xl">
-              <Toolbar disableGutters>
+              <Toolbar >
               <img style={{height: "3vw", width: "3vw"}} src='https://www.svgrepo.com/show/515504/china-university-mooc.svg'/>
-          
                 <Typography
                   variant="h6"
                   noWrap
@@ -111,14 +109,14 @@ function MyAppBar() {
                 >
                 courseKaro
                 </Typography>
-                <Box sx={{ flexGrow: 0 }}>
-                <Button variant="contained" onClick={() => navigate('./login')}>Log in</Button>&nbsp;
-                <Button variant="contained" onClick={() => navigate('./register')}>Sign up</Button>
+                <Box sx={{ flexGrow: 0, display: 'flex', gap: 1}}>
+                <Button onClick={() => navigate('./admin/login')}>Teach on courseKaro</Button>
+                <Button variant="contained" onClick={() => navigate('./user/login')}>Log in</Button>
+                <Button variant="contained" onClick={() => navigate('./user/register')}>Sign up</Button>
                 </Box>
               </Toolbar>
-            </Container>
           </AppBar>
-        </div>
+        </Box>
         </>
   }
 }
