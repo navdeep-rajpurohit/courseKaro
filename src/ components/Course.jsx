@@ -20,19 +20,19 @@ export default function Course() {
         })
     })}, []);
     return <>
-        <Container id="container" fixed>
-            <Box sx={{  height: '90vh' }}>
-                <Typography variant="h3" display="block" gutterBottom>
-                    {course.title}
+        <Box id="container" style={{padding: '1%'}}>
+            <Box sx={{  height: '90vh' }} style={{width: '70%', overflow: 'hidden'}}>
+                <Typography variant="h3" display="block" style={{maxWidth: '70%', overflow: 'hidden'}} gutterBottom>
+                    {course.title}kjgjgkhghjgjhgjhghmgjhghghjgjh121
                 </Typography>
-                <Typography variant="body1" display="block" gutterBottom>
+                <Typography variant="body1" display="" gutterBottom>
                     {course.description}
                 </Typography>
                 <Typography variant="subtitle2" display="block" gutterBottom>
                     {course.instructor}
                 </Typography>
             </Box>         
-            <Box id="courseImgBtn">
+            <Box id="courseImgBtn" style={{width: '30%', overflow: 'hidden'}}>
                     <Box
                         component="img"
                         sx={{
@@ -48,10 +48,9 @@ export default function Course() {
                     <Typography variant="body1" display="block" gutterBottom>
                         <CurrencyRupeeIcon />{course.price}
                     </Typography>
-                    <Button variant="contained">Buy this course</Button>
+                    <Button variant="contained" size='large'>Buy</Button>
                     </Box>
-                    
                 </Box>
-        </Container>
+        </Box>
     </>
 }

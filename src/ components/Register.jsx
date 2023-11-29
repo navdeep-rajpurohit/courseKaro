@@ -5,6 +5,7 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { useNavigate } from "react-router-dom";
+import Box from '@mui/material/Box';
 
 function Register(){
     const navigate = useNavigate();
@@ -37,26 +38,26 @@ function Register(){
 
 
     return <>
-    <div id='box-div'>
-    <Card
-        component="form"
-        style={{m: 1 ,width: 400, padding: 20}}
-        noValidate
-        autoComplete="off"
-    >
-        <Typography variant="h6">
-            Sign up and start learning
-        </Typography><br/>
-        <TextField fullWidth={true} onChange={(e) => setName(e.target.value)} id="name" label="Full name" variant="outlined" /><br/> <br/>
-        <TextField fullWidth={true} onChange={(e) => setEmail(e.target.value)} id="email" label="Email" variant="outlined" /><br/> <br/>
-        <TextField fullWidth={true} type='password' onChange={(e) => setPasswprd(e.target.value)} id="password" label="Password" variant="outlined" /> <br/> <br/>
-        <Button fullWidth={true} onClick={addUser} variant="outlined">Sign up</Button><br/><br/>
-        <Typography>
-        Already have an account? <Link href="" onClick={() => navigate('/user/login')}>Log in</Link>
-        </Typography>
-        
-    </Card>
-</div>
+    <Box id="form-div">
+        <Card
+            component="form"
+            style={{m: 1 ,width: 400, padding: 20}}
+            noValidate
+            autoComplete="off"
+        >
+            <Typography variant="h6">
+                Sign up and start learning
+            </Typography><br/>
+            <TextField fullWidth={true} onChange={(e) => setName(e.target.value)} id="name" label="Full name" variant="outlined" /><br/> <br/>
+            <TextField fullWidth={true} onChange={(e) => setEmail(e.target.value)} id="email" label="Email" variant="outlined" /><br/> <br/>
+            <TextField fullWidth={true} type='password' onChange={(e) => setPasswprd(e.target.value)} id="password" label="Password" variant="outlined" /> <br/> <br/>
+            <Button fullWidth={true} onClick={addUser} variant="outlined">Sign up</Button><br/><br/>
+            <Typography>
+            Already have an account? <Link href="" onClick={() => navigate('/user/login')}>Log in</Link>
+            </Typography>
+            
+        </Card>
+    </Box>
 </>
 }
 

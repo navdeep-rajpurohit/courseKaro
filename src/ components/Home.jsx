@@ -20,22 +20,24 @@ export default function Home(){
     })}, [])
 
     return <>
-        <Typography variant='h3'>
-            A broad selection of courses
-        </Typography><br/>
-        <Typography variant='h6'>
-        Choose from over {courses.length} online video courses with new additions published every month
-        </Typography><br/>
-        <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 10 }} justifyContent="center">
+        <Box>
+            <Typography variant='h3'>
+                A broad selection of courses
+            </Typography>
+            <Typography variant='h6'>
+            Choose from over {courses.length} online video courses with new additions published every month
+            </Typography><br/>
+        </Box>
+        <Box>
+            <Grid justifyContent={'center'} container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 10 }} >
                 {courses.map((course) => (
                     <CourseGrids key={course._id} course={course}/>
                 ))}
-            </Grid>
+            </Grid><br/>
         </Box>
-        <Box Align="center">         
-            <Button size="large" onClick={() => navigate('./courses')}>Browse all courses</Button><br/>
-        </Box>   
+            <Box textAlign='center'>         
+                <Button size="large" onClick={() => navigate('./courses')}>Browse all courses</Button><br/>
+            </Box> 
     </>
 }
 
@@ -51,7 +53,7 @@ function CourseGrids(props) {
     return (
         <Grid item key={course._id} >
                     <Item onClick={() => navigate('./course/'+course._id)} sx={{ width: 260, height: 400}} style={{ cursor: 'pointer'}}>   
-                        <Box Align="center">
+                        <Box textAlign={'center'}>
                             <img  style={{height: '15vw',width:'15vw', overflow:'hidden'}} src={course.imageUrl}/>
                         </Box>
                         <Box>

@@ -28,10 +28,9 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
   }));
 
-export default function AdminDashboard() {
+export default function AdminDashboard({editId, setEditId}) {
 
     const [email, setEmail] = React.useState(null);
-
     React.useEffect(() => {
         fetch('http://localhost:3000/me', {
            method: "GET",
@@ -48,24 +47,27 @@ export default function AdminDashboard() {
            })
         })}, [])
     
-    return <div> 
+    return <> 
+    <Box id='form-div'>
         { email == null &&
-            <div>
+            <Box>
                 <img style={{height: '20vw',width:'20vw', overflow: 'hidden'}} src={"https://www.svgrepo.com/show/142352/access-denied.svg"}/>
                 <Typography variant="h1" >
                     403
-                </Typography>
-            </div> 
+                </Typography> 
+            </Box>
         }
-        { email && <div id="adminDiv">
-            <AllCourseCard /> 
-            <AddCourseCard /> 
-        </div>
+        { email && <Box id="adminDiv">
+            <AllCourseCard editId={editId} setEditId={setEditId}/> 
+            <AddCourseCard />
+            <EditCourseCard />
+        </Box>
         }
-    </div>          
+    </Box>
+    </>          
 }
 
-function AllCourseCard() {
+function AllCourseCard(props) {
     const [allCourses, setCourses] = React.useState([]);
     React.useEffect(() => {fetch('http://localhost:3000/courses', {
         method: "GET"
@@ -78,6 +80,10 @@ function AllCourseCard() {
     function deleteCourse(courseId) {
         axios.delete('http://localhost:3000/admin/course/'+courseId).
         then(() => {alert("Deleted")});
+    }
+
+    function editCourse(courseId) {
+        props.setEditId(courseId);
     }
 
     return (
@@ -93,7 +99,7 @@ function AllCourseCard() {
             <Item key={course._id}>
                 {course.title} By {course.instructor}
                 <span id="courseButtons">
-                 <Button><EditIcon/> </Button>
+                 <Button onClick={() => editCourse(course._id)}><EditIcon/> </Button>
                  <Button onClick={() => deleteCourse(course._id)}><DeleteIcon/></Button>
                 </span>
             </Item>))}
@@ -143,6 +149,49 @@ function AddCourseCard() {
     </CardContent>
     <CardActions>
         <Button size="small" onClick={addCourse} fullWidth={true} variant='outlined'>Add course</Button>
+    </CardActions>
+    </Card>
+}
+
+function EditCourseCard(props) {
+        const [courseTitle, setCourseTitle] = React.useState("");
+        const [instructor, setInstructor] = React.useState("");
+        const [description, setDescription] = React.useState("");
+        const [imageUrl, setImageUrl] = React.useState("");
+        const [price, setPrice] = React.useState("");
+        const [course, setCourse] = React.useState([]);
+
+    if(props.editId) {
+    fetch('http://localhost:3000/course/'+props.editId,{
+        method: "GET",
+        headers: {
+            "Content-type": "application/json"
+        }
+    }).then((res) => {
+        res.json().then((data) => {
+            if(data[0]) {
+            setCourse(data[0]);
+            }
+            else {
+                setCourse([]);
+            }
+        })
+    })}
+    return <Card sx={{ minWidth: 475, minHeight: 510 }}>
+    <CardContent>
+        <Typography variant="h5" component="div">
+        Edit course
+        </Typography>
+        <CardContent>
+        <TextField value={course.title || ''} onChange={(e) => setCourseTitle(e.target.value)} fullWidth={true} id="course-title" label="Course title" variant="outlined" /> <br/><br/>
+        <TextField value={course.instructor || ''} onChange={(e) => setInstructor(e.target.value)} fullWidth={true} id="course-instructor" label="Instructor" variant="outlined" /> <br/><br/>
+        <TextField value={course.description || ''} onChange={(e) => setDescription(e.target.value)} fullWidth={true} id="course-desc" label="Description" variant="outlined" /> <br/><br/>
+        <TextField value={course.imageUrl || ''} onChange={(e) => setImageUrl(e.target.value)} fullWidth={true} id="image" label="Image URL" variant="outlined" /> <br/> <br/>
+        <TextField value={course.price || ''} onChange={(e) => setPrice(e.target.value)} fullWidth={true} id="price" label="Price" variant="outlined" /> <br/>
+        </CardContent>
+    </CardContent>
+    <CardActions>
+        <Button size="small" fullWidth={true} variant='outlined'>Update</Button>
     </CardActions>
     </Card>
 }

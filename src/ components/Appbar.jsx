@@ -2,47 +2,15 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from "react-router-dom";
 
-const settings = ['Profile', 'Dashboard', 'Logout'];
 
-function MyAppBar() {
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+function MyAppBar({email, setEmail}) {
   const navigate = useNavigate();
-  const [email, setEmail] = React.useState(null);
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
   
-  React.useEffect(() => {
-      fetch('http://localhost:3000/me', {
-         method: "GET",
-         headers: {
-            "Authorization": "Bearer " + localStorage.getItem('token')
-         },
-      })
-      .then((res) => {
-         res.json()
-         .then((data) => {
-            if(data.email) {
-               setEmail(data.email);
-            }
-         })
-      })}, [])
-
   if(email) {
     return <>
     <div id="appbar-div">
@@ -72,7 +40,7 @@ function MyAppBar() {
             <Button 
               variant="contained" 
               onClick={() => {
-                localStorage.setItem('token', null);
+                localStorage.setItem('token', null)
                 setEmail(null);
               }}
             >
@@ -111,7 +79,7 @@ function MyAppBar() {
                 </Typography>
                 <Box sx={{ flexGrow: 0, display: 'flex', gap: 1}}>
                 <Button onClick={() => navigate('./admin/login')}>Teach on courseKaro</Button>
-                <Button variant="contained" onClick={() => navigate('./user/login')}>Log in</Button>
+                <Button  variant="contained" onClick={() => navigate('./user/login')}>Log in</Button>
                 <Button variant="contained" onClick={() => navigate('./user/register')}>Sign up</Button>
                 </Box>
               </Toolbar>

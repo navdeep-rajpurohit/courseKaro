@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import MyAppBar from './ components/Appbar';
 import Login from './ components/Login';
@@ -12,7 +11,9 @@ import Course from './ components/Course';
 import AdminDashboard from './ components/AdminDashboard';
 import Bottombar from './ components/Bottombar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React from 'react';
+import * as React from 'react';
+import axios  from 'axios';
+import {BASE_URL} from "./config.js"
 import {
   RecoilRoot,
   atom,
@@ -23,30 +24,46 @@ import {
 
 
 function App() {
+  const [email, setEmail] = React.useState(null);
+  const [editId, setEditId] = React.useState(null);
+
+  const init = async() => {
+    const response = await axios.get(`${BASE_URL}/me`, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    })
+
+    if(response.data.email) {
+      setEmail(response.data.email);
+      
+    }
+  };
+
+  React.useEffect(() => {
+    init();
+  }, [])
+
 
   return (
     <RecoilRoot>
-      <div>
-        <div>
-          <MyAppBar/>
-        </div>
-        <div id='pageContent'>
-        <Routes>
-          <Route path="/user/login" element={<Login/>}/>
-          <Route path="/user/register" element={<Register/>}/>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/courses" element={<Courses/>}/>
-          <Route path="/user/profile" element={<Profile/>}/>
-          <Route path="/user/dashboard" element={<Dashboard/>}/>
-          <Route path="/admin/login" element={<AdminLogin/>}/>
-          <Route path="/admin/dashboard" element={<AdminDashboard/>}/>
-          <Route path="/course/:_id" element={<Course/>}/>
-        </Routes>
-        </div>
-        <div>
+      <Router>
+          <MyAppBar email={email} setEmail={setEmail}/>
+          <div id='pageContent'>
+            <Routes>
+              <Route path="/user/login" element={<Login setEmail={setEmail} />}/>
+              <Route path="/user/register" element={<Register/>}/>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/courses" element={<Courses/>}/>
+              <Route path="/user/profile" element={<Profile/>}/>
+              <Route path="/user/dashboard" element={<Dashboard />}/>
+              <Route path="/admin/login" element={<AdminLogin/>}/>
+              <Route path="/admin/dashboard" element={<AdminDashboard editId={editId} setEditId={setEditId}/>}/>
+              <Route path="/course/:_id" element={<Course/>}/>
+            </Routes>
+          </div>
           <Bottombar/>
-        </div>
-      </div>
+      </Router>
     </RecoilRoot>
   )
 }

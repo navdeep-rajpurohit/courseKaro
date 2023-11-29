@@ -6,6 +6,14 @@ body, html{
 #pageContent{
     min-height:77vh;
     padding: 10px;
+    display: block;
+    box-sizing: border-box;
+}
+
+#form-div {
+    display: flex;
+    justify-content: center;
+    padding: 2%;
 }
 
 #appbar-div{
@@ -27,20 +35,15 @@ body, html{
     justify-content: baseline;
 }
 
-#courseButtons {
-    float:inline-end
-}
-
-#courseImgBtn {
-    display:grid;
-    float: right;
-    margin-right: 50px;
-    min-height: 200px;
-    text-align: center;
-}
 
 #container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     background-color: #f9f9f9;
+    padding: 15%;
+    
+}
+
+#courseImgBtn {
+    text-align: center;
 }

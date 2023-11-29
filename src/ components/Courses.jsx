@@ -48,7 +48,7 @@ function CourseGrids(props) {
       }));
     return (
         <Grid item key={course._id} >
-                    <Item onClick={() => navigate('./course/'+course._id)} sx={{ width: 260, height: 400}} style={{ cursor: 'pointer'}}>   
+                    <Item onClick={() => navigate('../course/'+course._id)} sx={{ width: 260, height: 400}} style={{ cursor: 'pointer'}}>   
                         <Box Align="center">
                             <img  style={{height: '15vw',width:'15vw', overflow:'hidden'}} src={course.imageUrl}/>
                         </Box>

@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from "react-router-dom";
+import Box from '@mui/material/Box';
 
 export default function AdminLogin() {
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ export default function AdminLogin() {
     })
 }
     return <>
-        <div id='box-div'>
+        <Box id='form-div'>
             <Card
                 component="form"
                 style={{m: 1 ,width: 400, padding: 20}}
@@ -46,6 +47,6 @@ export default function AdminLogin() {
                 <TextField fullWidth={true} type='password' id="password" label="Password" variant="outlined"  onChange={(e) => setPassword(e.target.value)} /> <br/> <br/>
                 <Button onClick={loginUser} fullWidth={true} variant="outlined">Log in</Button><br/><br/>
             </Card>
-        </div>
+        </Box>
     </>
 }
