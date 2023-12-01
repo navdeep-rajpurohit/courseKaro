@@ -6,34 +6,34 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
+import axios  from 'axios';
+import {BASE_URL} from "../config.js"
 
-function Register(){
+function Register({setEmail}){
     const navigate = useNavigate();
     const [name, setName] = React.useState("");
-    const [email, setEmail] = React.useState("");
+    const [registerEmail, setRegisterEmail] = React.useState("");
     const [password, setPasswprd] = React.useState("");
     
-    const addUser = () => {fetch('http://localhost:3000/register', {
-        method: "POST",
-        body: JSON.stringify({
+    const addUser = async() => {
+        const response = await axios.post(`${BASE_URL}/register`, {
             name: name,
-            email: email,
+            email: registerEmail,
             password: password
-        }),
-        headers: {
-            "Content-type": "application/json"
-        }
-    }).then((res) => {
-            res.json().then((data) => {
-                if(res.status == 201) {
-                localStorage.setItem('token', data.token);
-                window.location = "/";
-                }
-                else {
-                    alert(data.message);
-                }
-            })
+            }, {
+            headers: { 
+                "Content-type": "application/json"
+            }
         })
+        let data = response.data;
+        if(response.status == 201) {
+            localStorage.setItem('token', data.token);
+            setEmail(registerEmail);
+            navigate('/');
+        }
+        else {
+            alert(data.message);
+        }
     }
 
 
@@ -49,7 +49,7 @@ function Register(){
                 Sign up and start learning
             </Typography><br/>
             <TextField fullWidth={true} onChange={(e) => setName(e.target.value)} id="name" label="Full name" variant="outlined" /><br/> <br/>
-            <TextField fullWidth={true} onChange={(e) => setEmail(e.target.value)} id="email" label="Email" variant="outlined" /><br/> <br/>
+            <TextField fullWidth={true} onChange={(e) => setRegisterEmail(e.target.value)} id="email" label="Email" variant="outlined" /><br/> <br/>
             <TextField fullWidth={true} type='password' onChange={(e) => setPasswprd(e.target.value)} id="password" label="Password" variant="outlined" /> <br/> <br/>
             <Button fullWidth={true} onClick={addUser} variant="outlined">Sign up</Button><br/><br/>
             <Typography>

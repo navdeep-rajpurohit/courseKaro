@@ -6,11 +6,14 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
+import {useSetRecoilState} from "recoil";
+import {userState} from "../store/atoms/user.js";
 
-function Login({setEmail}){
+function Login(){
     const navigate = useNavigate();
     const [loginEmail, setLoginEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const setUser = useSetRecoilState(userState);
 
     const loginUser = () => {fetch('http://localhost:3000/login', {
         method: "POST",
@@ -25,7 +28,10 @@ function Login({setEmail}){
         res.json().then((data) => {
             if(data.email){
             localStorage.setItem('token', data.token);
-            setEmail(loginEmail);
+            setUser({
+                userEmail: loginEmail,
+                isLoading: false
+            });
             navigate('/');
             }
             else {

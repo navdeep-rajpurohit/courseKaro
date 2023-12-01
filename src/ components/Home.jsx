@@ -7,10 +7,14 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import {useRecoilValue} from "recoil";
+import { userEmailState } from "../store/selectors/userEmail"
+import {isUserLoading} from "../store/selectors/isUserLoading.js";
 
 export default function Home(){
     const navigate = useNavigate();
     const [courses, setCourses] = React.useState([]);
+    
     React.useEffect(() => {fetch('http://localhost:3000/courses', {
         method: "GET"
     }).then((res) => {
